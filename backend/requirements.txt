@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+python-chess
+gpt4all
+pymongo       # agar DB use karna ho
