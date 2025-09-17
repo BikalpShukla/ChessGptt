@@ -253,7 +253,6 @@ class ChessFeatureExtractor:
     def _extract_all_features(self, board):
         white_material, black_material = self.get_material(board)
         return {
-            "board": str(board),
             "material": {"white": white_material, "black": black_material},
             "mobility": self.get_mobility(board),
             "king_safety": {"white": self.get_king_safety(board, chess.WHITE), "black": self.get_king_safety(board, chess.BLACK)},
@@ -315,17 +314,12 @@ class ChessFeatureExtractor:
 # Example Usage  
 # ==============================================================  
 if __name__ == "__main__":
-    prev_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
+    # prev_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
+    prev_fen = None
     curr_fen = "rnbqkbnr/pppppppp/8/8/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 1"
 
     extractor = ChessFeatureExtractor()
 
-    print("=== Only Current FEN ===")
-    f1 = extractor.extract_features(curr=curr_fen)
-    for k, v in f1.items():
-        print(f"- {k}: {v}")
-
-    print("\n=== Difference Between Prev & Curr ===")
     f2 = extractor.extract_features(curr=curr_fen, prev=prev_fen)
     for k, v in f2.items():
         print(f"- {k}: {v}")
